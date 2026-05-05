@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เข้าสู่ระบบ - AppointMgr</title>
+    <link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-blue: #007bff;
+            --bg-light: #f4f7f9;
+            --text-dark: #333;
+            --error-red: #dc3545;
+        }
+
+        body {
+            font-family: 'Anuphan', sans-serif;
+            background-color: var(--bg-light);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .login-card {
+            background: #ffffff;
+            width: 450px;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+
+        .brand-header {
+            margin-bottom: 30px;
+        }
+
+        .brand-header h1 {
+            font-size: 28px;
+            color: var(--text-dark);
+            margin: 0;
+        }
+
+        .brand-header p {
+            color: #777;
+            font-size: 14px;
+            margin: 5px 0 0;
+        }
+
+        .login-title {
+            text-align: left;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .login-subtitle {
+            text-align: left;
+            color: #888;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            text-align: left;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            font-size: 15px;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-wrapper i.input-icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #aaa;
+        }
+
+        .input-wrapper input {
+            width: 100%;
+            padding: 12px 12px 12px 40px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 15px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .input-wrapper input:focus {
+            border-color: var(--primary-blue);
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #aaa;
+        }
+
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+        .error-msg {
+            color: var(--error-red);
+            font-size: 13px;
+            margin-top: 5px;
+            display: none; /* ซ่อนไว้ก่อน */
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 14px;
+            background-color: #222;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-login:hover {
+            background-color: #444;
+        }
+
+        .footer-info {
+            margin-top: 30px;
+            font-size: 12px;
+            color: #999;
+        }
+
+        .contact-link {
+            color: var(--primary-blue);
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-card">
+    <div class="brand-header">
+        <h1>AppointMgr</h1>
+        <p>ระบบบริหารจัดการนัดหมาย</p>
+    </div>
+
+    <h2 class="login-title">เข้าสู่ระบบ</h2>
+    <p class="login-subtitle">กรุณากรอกข้อมูลเพื่อเข้าใช้งานระบบ</p>
+
+    <form id="loginForm">
+        <div class="form-group">
+            <label>ชื่อผู้ใช้ <span style="color:red">*</span></label>
+            <div class="input-wrapper">
+                <i class="fa-regular fa-user input-icon"></i>
+                <input type="text" id="username" placeholder="somchai_j" required>
+            </div>
+            <div id="userError" class="error-msg"><i class="fa-solid fa-circle-exclamation"></i> กรุณากรอกชื่อผู้ใช้ให้ถูกต้อง</div>
+        </div>
+
+        <div class="form-group">
+            <label>รหัสผ่าน <span style="color:red">*</span></label>
+            <div class="input-wrapper">
+                <i class="fa-solid fa-lock input-icon"></i>
+                <input type="password" id="password" placeholder="••••••••" required>
+                <i class="fa-regular fa-eye-slash toggle-password" id="eyeIcon"></i>
+            </div>
+            <div id="passError" class="error-msg"><i class="fa-solid fa-circle-exclamation"></i> รหัสผ่านไม่ถูกต้อง</div>
+        </div>
+
+        <div class="form-options">
+            <label><input type="checkbox"> จำชื่อผู้ใช้</label>
+            <a href="#" style="color: #666; text-decoration: none;">ลืมรหัสผ่าน?</a>
+        </div>
+
+        <button type="submit" class="btn-login"><i class="fa-solid fa-right-to-bracket"></i> เข้าสู่ระบบ</button>
+    </form>
+
+    <div class="footer-info">
+        <p>© สงวนลิขสิทธิ์ บริษัท ไท อคิเทค โปร จำกัด</p>
+        <p>ติดต่อสอบถาม: <a href="mailto:admin@apparchpro.co.th" class="contact-link">admin@apparchpro.co.th</a></p>
+    </div>
+</div>
+
+<script>
+    // ฟังก์ชันเปิด-ปิดตาดูรหัสผ่าน
+    const eyeIcon = document.getElementById('eyeIcon');
+    const passwordInput = document.getElementById('password');
+
+    eyeIcon.addEventListener('click', () => {
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            eyeIcon.classList.replace('fa-eye-slash', 'fa-eye');
+        } else {
+            passwordInput.type = 'password';
+            eyeIcon.classList.replace('fa-eye', 'fa-eye-slash');
+        }
+    });
+
+    // ตัวอย่างการทำ Validation เบื้องต้น
+    const loginForm = document.getElementById('loginForm');
+    loginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        // ในที่นี้สมมติว่าถ้าใส่ว่างจะโชว์ Error (จริงๆ input มี required อยู่แล้ว)
+        // คุณสามารถเขียน Logic ตรวจสอบกับ Database ตรงนี้ได้
+        alert('ระบบกำลังตรวจสอบข้อมูล...');
+    });
+</script>
+
+</body>
+</html>
